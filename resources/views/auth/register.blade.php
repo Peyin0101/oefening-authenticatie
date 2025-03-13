@@ -2,7 +2,7 @@
     <h1 class="text-2xl font-bold mb-4 dark:text-white">Register</h1>
     <p class="mb-4 text-gray-700 dark:text-gray-300">
         Already have an account?
-        <a href="#" class="text-blue-500 dark:text-blue-300">Login here</a>
+        <a href="{{ route('login') }}" class="text-blue-500 dark:text-blue-300">Login here</a>
     </p>
     <form novalidate action="{{ route('register.post') }}" method="POST"
         class="bg-white dark:bg-gray-800 max-w-2xl p-6 rounded shadow-md">

@@ -19,14 +19,15 @@
         <p class="text-gray-600 dark:text-gray-500">
             &copy; {{ date('Y') }} Your Company. All rights reserved.
         </p>
+        @auth
         <div class="flex gap-4 items-baseline">
-            <p class="text-gray-600 dark:text-gray-500">Logged in as <span class="text-gray-700 dark:text-gray-300">John
-                    Doe</span></p>
-            <form action="" method="POST">
+            <p class="text-gray-600 dark:text-gray-500">Logged in as <span class="text-gray-700 dark:text-gray-300">{{ Auth::user()->name }}</span></p>
+            <form action="{{ route('logout') }}" method="POST">
                 @csrf
                 <button type="submit" class="text-blue-500 dark:text-blue-300 hover:underline">Logout</button>
             </form>
         </div>
+        @endauth
     </footer>
 </body>
 
