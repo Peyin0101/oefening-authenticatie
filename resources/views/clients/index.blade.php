@@ -1,7 +1,9 @@
 <x-layout>
     <h1 class="text-2xl font-bold mb-4 dark:text-white">Clients</h1>
+    @can('manage-users')
     <a href="{{ route('clients.create') }}"
         class="mb-4 inline-block bg-blue-500 text-white py-2 px-4 rounded dark:bg-blue-700">Add New Client</a>
+        @endcan
     <table class="min-w-full bg-white dark:bg-gray-800">
         <thead>
             <tr>
@@ -31,6 +33,7 @@
                     </td>
                     <td class="py-2 px-4 border-b dark:border-gray-700">
                         <a href="{{ route('clients.show', $client) }}" class="text-blue-500 dark:text-blue-300">Show</a>
+                        @can('manage-users')
                         <a href="{{ route('clients.edit', $client) }}"
                             class="text-yellow-500 dark:text-yellow-300 ml-2">Edit</a>
                         <form action="{{ route('clients.destroy', $client) }}" method="POST" class="inline"
@@ -39,6 +42,7 @@
                             @method('DELETE')
                             <button type="submit" class="text-red-500 dark:text-red-300 ml-2">Delete</button>
                         </form>
+                        @endcan
                     </td>
                 </tr>
             @endforeach

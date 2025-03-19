@@ -22,10 +22,13 @@ class RegisterController extends Controller
             'password' => 'required|string|min:8|confirmed',
         ]);
 
+        $role = User::count() == 0 ? 'admin' : 'user';
+
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
+            'role' => $role,
         ]);
         Auth::login($user);
         return redirect('/');

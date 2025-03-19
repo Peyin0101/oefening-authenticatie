@@ -1,10 +1,15 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\ClientController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\RegisterController;
+
+Route::get('/users', function () {
+    return User::all();
+});
 
 Route::redirect('/', '/clients');
 

@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreClientRequest;
-use App\Http\Requests\UpdateClientRequest;
 use App\Models\Client;
 use App\Mail\ClientAdded;
 use App\Mail\ClientPremium;
-use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\StoreClientRequest;
+use App\Http\Requests\UpdateClientRequest;
+use Illuminate\Routing\Controllers\HasMiddleware;
 
 class ClientController extends Controller
 {
@@ -27,6 +28,7 @@ class ClientController extends Controller
      */
     public function create()
     {
+        Gate::authorize('manage-users');
         return view('clients.create');
     }
 
@@ -35,6 +37,7 @@ class ClientController extends Controller
      */
     public function store(StoreClientRequest $request)
     {
+        Gate::authorize('manage-users');
         $client = new Client();
         $client->name = $request->input('name');
         $client->surname = $request->input('surname');
@@ -65,6 +68,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
+        Gate::authorize('manage-users');
         return view('clients.edit', compact('client'));
     }
 
@@ -73,6 +77,7 @@ class ClientController extends Controller
      */
     public function update(UpdateClientRequest $request, Client $client)
     {
+        Gate::authorize('manage-users');
         $client->name = $request->input('name');
         $client->surname = $request->input('surname');
         $client->premium = $request->input('premium', false);
